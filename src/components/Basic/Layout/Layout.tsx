@@ -1,14 +1,18 @@
 import React from "react";
 import Navbar from "../../Advanced/Navbar";
-export interface AuxProps {
+export interface LayoutProps {
   children: React.ReactNode;
+  pageStyleClass?: string;
+  contentStyleClass?: string;
 }
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default function Layout({ children, pageStyleClass, contentStyleClass }: LayoutProps) {
   return (
-    <>
+    <div className={`${pageStyleClass} page-layout`}>
       <Navbar />
+      <div className={`${contentStyleClass} content-layout`}>
       {children}
-    </>
+      </div>
+    </div>
   );
 }

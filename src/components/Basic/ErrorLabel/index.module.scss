@@ -1,0 +1,10 @@
+@import "../../../styles/variables.scss";
+.errorLabel{
+    color:$red;
+    margin: 0px 4px;
+    font-size: 14px;
+}
+.errorLabelWrapper{
+    text-align: left;
+    width: 100%;
+}
