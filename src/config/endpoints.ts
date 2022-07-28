@@ -32,6 +32,10 @@ export default function apiOptions(
 export const USER_SIGNUP = {url: "/api:0ZC7IWne/auth/signup", method: REQUEST_METHODS.POST};
 export const USER_LOGIN = {url: "/api:0ZC7IWne/auth/login", method: REQUEST_METHODS.POST};
 export const GET_USER = {url: "/api:0ZC7IWne/auth/me", method: REQUEST_METHODS.GET};
+
+//Profile
+export const GET_ALL_PROFILE_PATHS = {url: "/api:0ZC7IWne/getprofilepaths", method: REQUEST_METHODS.GET};
+export const GET_PROFILE_WITH_SLUG = {url: "/api:0ZC7IWne/getProfileWithSlug", method: REQUEST_METHODS.GET};
 // export const SIGNUP_API = { url: "user/signup", method: "post" };
 // export const LOGIN_API = { url: "user/login", method: "post" };
 // export const UPDATE_PROFILE_API = {
