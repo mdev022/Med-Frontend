@@ -9,7 +9,6 @@ export interface ProfilePageProptype{
 }
 
 const ProfilePage = ({data}:ProfilePageProptype )  => {
-  console.log('data',data);
   const THEME = data?.theme;
   switch (THEME) {
   case "V1":
