@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import Input from "../../components/Basic/Input";
 import Layout from "../../components/Basic/Layout/Layout";
 import AxiosApi from "../../config/apiAxios";
-import apiOptions, { USER_LOGIN, USER_SIGNUP } from "../../config/endpoints";
+import apiOptions, { GET_PROFILE_WITH_SLUG, USER_LOGIN, USER_SIGNUP } from "../../config/endpoints";
 import useAuth from "../../hooks/useAuth";
 import { LoginFormSchema } from "../../utils/validations";
 import styles from  "./index.module.scss";
@@ -23,11 +23,9 @@ const Login: NextPage = () => {
   console.log('auth',auth);
 
 
-  // useEffect(()=> {
-  //   if(auth?.user?.id){
-  //     router.push("/");
-  //   }
-  // },[auth?.user]);
+  useEffect(()=> {
+    AxiosApi({...apiOptions(GET_PROFILE_WITH_SLUG),params: {slug: "anish-maitra"}});
+  },[auth?.user]);
 
   const handleLogin = async (values: {email:string; password: string}) => {
     try {

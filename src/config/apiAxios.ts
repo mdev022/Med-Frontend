@@ -6,8 +6,13 @@ const AxiosApi = axios.create();
 // Request interceptor to add token
 AxiosApi.interceptors.request.use(
   async (request_config) => {
-    const authorization_token = localStorage.getItem("access");
-    request_config.headers.Authorization = "Bearer " + authorization_token;
+    
+    try {
+      const authorization_token = localStorage.getItem("access");
+      request_config.headers.Authorization = "Bearer " + authorization_token;
+    } catch (error) {
+      // console.log(error);
+    }
 
     // if api request for refreshing token
     // if (request_config.url === apiOptions(REFRESH_TOKEN_API).url) {

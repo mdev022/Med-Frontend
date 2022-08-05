@@ -1,0 +1,51 @@
+@import "../../../styles//variables.scss";
+.wrapper{
+    padding: 2rem 0rem;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.connectInfoWrapper{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    @media (min-width: $medium-screen) {
+        flex-direction: row;
+    }
+    >div{
+        flex-direction: row;
+        width: 80%;
+        min-height: 68px;
+        @media (min-width: $medium-screen) {
+            width: 35%;
+           
+        }
+        background-color: $light-orange;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-direction: row;
+        padding: 0.75rem;
+        margin: 1rem;
+        border-radius: 8px;
+        span{
+            margin-left: 16px;
+        }
+    }
+}
+.connectWithMeWrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 24px;
+    div{
+        svg{
+            margin-inline: 8px;
+        }
+    }
+}

@@ -1,6 +1,8 @@
 import "../styles/globals.scss";
 import "../styles/variables.scss";
+
 import type { AppProps } from "next/app";
+import React from "react";
 import Head from "next/head";
 import Script from "next/script";
 
