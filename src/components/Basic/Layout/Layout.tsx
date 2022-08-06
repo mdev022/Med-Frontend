@@ -1,4 +1,5 @@
 import React from "react";
+import Footer from "../../Advanced/Footer";
 import Navbar from "../../Advanced/Navbar";
 export interface LayoutProps {
   children: React.ReactNode;
@@ -11,8 +12,9 @@ export default function Layout({ children, pageStyleClass, contentStyleClass }: 
     <div className={`${pageStyleClass} page-layout`}>
       <Navbar />
       <div className={`${contentStyleClass} content-layout`}>
-      {children}
+        {children}
       </div>
+      <Footer />
     </div>
   );
 }

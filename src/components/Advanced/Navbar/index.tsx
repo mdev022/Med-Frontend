@@ -1,12 +1,13 @@
 import Link from "next/link";
 import React from "react";
+import MainLogo from "../../SvgComponents/MainLogo";
 import styles from "./index.module.scss";
 export const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg bg-light p-4">
       <div className="container-fluid">
         <Link className="navbar-brand" href="/">
-          Medinery
+          <span className={styles.mainLogo}><MainLogo /></span>
         </Link>
         <button
           className="navbar-toggler"

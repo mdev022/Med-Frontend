@@ -1,2 +1,14 @@
 .navbarSearch:focus {
 }
+.mainLogo{
+    padding-right: 1rem;
+    svg{
+        width: 60px;
+        height: 60px;
+        // g{
+        //     path:nth-child(1){
+        //         fill: #118aed;
+        //     }
+        // }
+    }
+}
