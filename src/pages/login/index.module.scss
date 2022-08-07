@@ -29,9 +29,14 @@
     color: white;
     margin-top: 1.5rem;
     &:hover{
+        background-color: $green;
+        border-color: $green !important;
         color: $white !important;
-        border-color: $white !important;
     }
+    // &:hover{
+    //     color: $white !important;
+    //     border-color: $white !important;
+    // }
 }
 .loginLayout{
     width: 100%;
