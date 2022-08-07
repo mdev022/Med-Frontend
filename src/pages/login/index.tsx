@@ -23,14 +23,15 @@ const Login: NextPage = () => {
   console.log('auth',auth);
 
 
-  useEffect(()=> {
-    AxiosApi({...apiOptions(GET_PROFILE_WITH_SLUG),params: {slug: "anish-maitra"}});
-  },[auth?.user]);
+  // useEffect(()=> {
+  //   AxiosApi({...apiOptions(GET_PROFILE_WITH_SLUG),params: {slug: "anish-maitra"}});
+  // },[auth?.user]);
 
   const handleLogin = async (values: {email:string; password: string}) => {
     try {
       const res = await AxiosApi({...apiOptions(USER_LOGIN), data: values});
       localStorage.setItem("access", res?.data?.authToken);
+      router.push('/');
     } catch (error) {
       console.log('error',error);
     }

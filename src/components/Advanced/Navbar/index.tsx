@@ -1,8 +1,11 @@
 import Link from "next/link";
 import React from "react";
+import useAuth from "../../../hooks/useAuth";
 import MainLogo from "../../SvgComponents/MainLogo";
 import styles from "./index.module.scss";
 export const Navbar = () => {
+  const auth = useAuth();
+  console.log('auth',auth);
   return (
     <nav className="navbar navbar-expand-lg bg-light p-4">
       <div className="container-fluid">
@@ -69,9 +72,13 @@ export const Navbar = () => {
             </li>
           </ul>
           <form className="d-flex" role="search">
-            <Link href="/login">
-              <button className="btn btn-outline-secondary mx-2">Login</button>
-            </Link>
+            {
+              auth?.user?.name ? <span className={styles.username}>
+                Hi {auth.user.name}
+              </span> : <Link href="/login">
+                <button className="btn btn-outline-secondary mx-2">Login</button>
+              </Link>
+            }
             <input
               className={`${styles.navbarSearch} form-control me-2 shadow-sm`}
               type="search"
