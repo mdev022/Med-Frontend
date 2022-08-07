@@ -33,7 +33,8 @@ export async function getStaticProps (context:any) {
     return {
       props: {
         profilePageData
-      }
+      },
+      revalidate: 60
     };
   } catch (error) {
     console.log("<<<<<<<<--------error-------->>>>>>>>",error);
