@@ -1,3 +1,10 @@
+@import "../../../styles/variables.scss";
+
 .defaultInputStyles{
     min-height: 82px;
+    input{
+        @media (max-width: $small-screen) {
+            font-size: 12px;
+        }
+    }
 }

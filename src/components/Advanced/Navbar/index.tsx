@@ -30,11 +30,6 @@ export const Navbar = () => {
                 Home
               </a>
             </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                Link
-              </a>
-            </li>
             <li className="nav-item dropdown">
               <a
                 className="nav-link dropdown-toggle"
@@ -70,6 +65,11 @@ export const Navbar = () => {
             <li className="nav-item">
               <a className="nav-link disabled">Disabled</a>
             </li>
+            {
+              auth?.user && auth?.user?.subscribed && <li className={`nav-item ${styles.dashboardLink}`} >
+                <Link href="/user/dashboard">Dashboard</Link>
+              </li>
+            }
           </ul>
           <form className="d-flex" role="search">
             {
