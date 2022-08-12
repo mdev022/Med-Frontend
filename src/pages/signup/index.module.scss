@@ -9,7 +9,7 @@
     }
     @media (max-width: $small-screen) {
         width: 90%;
-        max-height: 400px;
+        max-height: 480px;
     }
     height: 100% !important;
     max-height: 500px;
@@ -76,7 +76,7 @@
     }
 }
 .redirectButton{
-    background-color: $green;
+    background-color: $light-green;
     width: 240px;
     color: white;
     margin-top: 1.5rem;
@@ -100,7 +100,7 @@
         color: $red;
     }
 }
-.signuphereText{
+.backtoLoginText{
     padding: 1rem 0rem;
     a{
         &:hover{

@@ -7,7 +7,7 @@ import Layout from "../../components/Basic/Layout/Layout";
 import AxiosApi from "../../config/apiAxios";
 import apiOptions, { GET_PROFILE_WITH_SLUG, USER_LOGIN, USER_SIGNUP } from "../../config/endpoints";
 import useAuth from "../../hooks/useAuth";
-import { LoginFormSchema } from "../../utils/validations";
+import { LoginFormSchema, SignupFormSchema } from "../../utils/validations";
 import styles from  "./index.module.scss";
 import Link from "next/link";
 
@@ -17,7 +17,7 @@ export async function getStaticProps() {
   };
 }
 
-const Login: NextPage = () => {
+const SignUp: NextPage = () => {
   const auth = useAuth();
   const router = useRouter();
   console.log('auth',auth);
@@ -34,25 +34,27 @@ const Login: NextPage = () => {
   },[errorMsg]);
 
 
-
   // useEffect(()=> {
   //   AxiosApi({...apiOptions(GET_PROFILE_WITH_SLUG),params: {slug: "anish-maitra"}});
   // },[auth?.user]);
 
-  const handleLogin = async (values: {email:string; password: string}) => {
+  const handleSignUp = async (values: {email:string; password: string, fullname: string}) => {
     setRequestLoading(true);
     try {
-      const res = await AxiosApi({...apiOptions(USER_LOGIN), data: values});
+      const res = await AxiosApi({...apiOptions(USER_SIGNUP), data: {...values,name: values.fullname}});
       localStorage.setItem("access", res?.data?.authToken);
       router.push('/');
     } catch (errorObj) {
-      console.log('errorObj',errorObj);
+      // console.log(errorObj.response?.data, "errorObj");
       if(errorObj?.response?.data?.message){
         setErrorMsg(errorObj?.response?.data?.message);
       }
+     
     }
     setRequestLoading(false);
   };
+
+  console.log('setErrorMsg',errorMsg);
 
   if(auth.loading){
     return (
@@ -72,7 +74,7 @@ const Login: NextPage = () => {
               You are logged in...
             </div>
             <button className={`${styles.redirectButton}`}>
-              <Link href="/user/dashboard">
+              <Link href="/">
                 Go to dashboard
               </Link>
             </button>
@@ -87,18 +89,18 @@ const Login: NextPage = () => {
       <Layout contentStyleClass={styles.contentLayout}>
         <div className={`${styles.wrapper} container d-flex flex-column justify-content-center align-items-center `}>
           <div className={styles.loginHeader}>
-            <h3>Login</h3>
+            <h3>Sign up</h3>
           </div>
           <Formik 
             onSubmit={(values)=> 
             {
-              if(values.email && values.password){
-                handleLogin(values);
+              if(values.email && values.password && values.fullname){
+                handleSignUp(values);
               }
             }
-            } 
-            validationSchema={LoginFormSchema} 
-            initialValues={{ email: '', password: '' }}
+            }
+            validationSchema={SignupFormSchema} 
+            initialValues={{ email: '', password: '', fullname: '' }}
           >
             {({
               values,
@@ -113,6 +115,18 @@ const Login: NextPage = () => {
                 e.preventDefault();
                 handleSubmit();
               }}>
+                {console.log("styles",styles.loginInput)}
+                <Input
+                  type="text"
+                  value={values.fullname}
+                  // placeholder="Enter your email"
+                  className={styles.loginInput}
+                  label="Full Name"
+                  name="fullname"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  errorLabelProps={{message: errors.fullname, customStyle: styles.inputErrorMsg}}
+                />
                 <Input
                   type="email"
                   value={values.email}
@@ -135,19 +149,21 @@ const Login: NextPage = () => {
                   onBlur={handleBlur}
                   errorLabelProps={{message: errors.password, customStyle: styles.inputErrorMsg}}
                 />
-
                 {
                   errorMsg && <div className={styles.errorMsgWrapper}>
                     <span>{errorMsg}</span>
                   </div>
                 }
+                
                 {
-                  requestLoading ?  <div className="spinner-border text-success" role="status">
-                  </div> :  <button type="submit" className={`${styles.loginButton} btn`}>Login</button>
+                  requestLoading ? <div className="spinner-border text-success" role="status">
+                  </div> :   <button type="submit" className={`${styles.loginButton} btn`}>Sign up</button>
                 }
-                <div className={styles.signuphereText}>
-                  <Link href="/signup">Dont have an account ?. Sign up here.</Link>
+
+                <div className={styles.backtoLoginText}>
+                  <Link href="/login">Already have an account ?. Login here.</Link>
                 </div>
+              
               </form>
             )}
           </Formik>
@@ -158,4 +174,4 @@ const Login: NextPage = () => {
   );
 };
 
-export default Login;
+export default SignUp;
