@@ -38,10 +38,10 @@ const SignUp: NextPage = () => {
   //   AxiosApi({...apiOptions(GET_PROFILE_WITH_SLUG),params: {slug: "anish-maitra"}});
   // },[auth?.user]);
 
-  const handleSignUp = async (values: {email:string; password: string, fullname: string}) => {
+  const handleSignUp = async (values: {email:string; password: string, fullname: string, phone: string}) => {
     setRequestLoading(true);
     try {
-      const res = await AxiosApi({...apiOptions(USER_SIGNUP), data: {...values,name: values.fullname}});
+      const res = await AxiosApi({...apiOptions(USER_SIGNUP), data: {...values,name: values.fullname, phone_no: values.phone}});
       localStorage.setItem("access", res?.data?.authToken);
       router.push('/');
     } catch (errorObj) {
@@ -94,13 +94,13 @@ const SignUp: NextPage = () => {
           <Formik 
             onSubmit={(values)=> 
             {
-              if(values.email && values.password && values.fullname){
+              if(values.email && values.password && values.fullname && values.phone && values.phone.length === 10){
                 handleSignUp(values);
               }
             }
             }
             validationSchema={SignupFormSchema} 
-            initialValues={{ email: '', password: '', fullname: '' }}
+            initialValues={{ email: '', password: '', fullname: '', phone: '' }}
           >
             {({
               values,
@@ -137,6 +137,17 @@ const SignUp: NextPage = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   errorLabelProps={{message: errors.email, customStyle: styles.inputErrorMsg}}
+                />
+                <Input
+                  type="text"
+                  value={values.phone}
+                  // placeholder="Enter your email"
+                  className={styles.loginInput}
+                  label="Phone no"
+                  name="phone"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  errorLabelProps={{message: errors.phone, customStyle: styles.inputErrorMsg}}
                 />
                 <Input
                   type="password"

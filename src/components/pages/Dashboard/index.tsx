@@ -9,14 +9,16 @@ interface IDashboardProps {
 
 const Dashboard = ({user}:IDashboardProps) => {
   console.log('dashboard user',user);
+
+  
   return <>
     <div className="container dashboard__wrapper">
       <div className="dashboard__content">
         <div className="dashboard__row1">
           <h1>Welcome {user?.name} !</h1>
           <div className="dashboard__row1__contactdetails">
-            <span><MailIconRed />  koustavlmcr17@gmail.com</span>
-            <span><PhoneIconRed /> +917602022864</span>
+            <span><MailIconRed />  {user?.email}</span>
+            <span><PhoneIconRed /> {user?.phone_no}</span>
           </div>
         </div>
 
@@ -28,9 +30,11 @@ const Dashboard = ({user}:IDashboardProps) => {
                 <span className="plan-active">Active</span> 
                 :<span className="plan-inactive">Inactive</span>}
             </div>
-            <div>
-              <span  className="expiration-date">Expiration Date : <span>31/12/22</span></span>
-            </div>
+            {
+              user?.plan_expiry_date && <div>
+                <span  className="expiration-date">Expiration Date : <span>{user?.plan_expiry_date}</span></span>
+              </div>
+            }
             <div>
               <span  className="theme-info">Theme : <span>{user?.profile_page?.theme}</span></span>
             </div>
