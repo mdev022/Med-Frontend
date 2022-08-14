@@ -2,7 +2,7 @@
 
 ## Local
 
-- From github repo
+### From github repo
 
  1. Clone the repository
  2. install nvm
@@ -13,7 +13,7 @@
  7. for local build, delete .next folder and then run "npm run build" and then "npm run start".
  8. Visit localhost:3000
  
-- Using docker
+### Using docker
  1. Make sure docker is installed in the machine.
  2. pull image from dockerhub
  3. run "docker run -p 3000:3000 <image_id>"
