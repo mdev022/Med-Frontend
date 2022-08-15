@@ -16,9 +16,8 @@ const Dashboard = ({user}:IDashboardProps) => {
       <div className="dashboard__content">
         <div className="dashboard__row1">
           <h1>Welcome {user?.name} !</h1>
-          <div className="dashboard__row1__contactdetails">
-            <span><MailIconRed />  {user?.email}</span>
-            <span><PhoneIconRed /> {user?.phone_no}</span>
+          <div className="dashboard__row1__greetingText">
+              Congratulations you are now a member of Medinery
           </div>
         </div>
 
@@ -40,7 +39,13 @@ const Dashboard = ({user}:IDashboardProps) => {
             </div>
           </div>
           <div className="dashboard__row2__col col2">
-            <h3>Plan Details</h3>
+            <h3>Personal Info</h3>
+            <div>
+              <span><MailIconRed />  {user?.email}</span>
+            </div>
+            <div>
+              <span><PhoneIconRed /> {user?.phone_no}</span>
+            </div>
           </div>
           <div className="dashboard__row2__col col3">
             <h3>Profile Info</h3>

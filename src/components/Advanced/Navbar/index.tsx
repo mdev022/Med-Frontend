@@ -7,7 +7,7 @@ export const Navbar = () => {
   const auth = useAuth();
   console.log('auth',auth);
   return (
-    <nav className="navbar navbar-expand-lg bg-light p-4">
+    <nav className="navbar navbar-expand-lg  p-4 navbar__wrapper">
       <div className="container-fluid">
         <Link className="navbar-brand" href="/">
           <span className={styles.mainLogo}><MainLogo /></span>
@@ -29,6 +29,11 @@ export const Navbar = () => {
               <a className="nav-link active" aria-current="page" href="#">
                 Home
               </a>
+            </li>
+            <li className="nav-item next-link-item">
+              <Link className="nav-link active" aria-current="page" href="/about">
+                About
+              </Link>
             </li>
             <li className="nav-item dropdown">
               <a

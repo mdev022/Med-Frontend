@@ -14,7 +14,7 @@ export default function HomePage() {
     <div className='container homepage__section1'>
       <div className='homepage__section1__col1'>
         <h1>
-            Medinery- A Preview
+            Preview
         </h1>
         <p>
         Medinery is a digital health platform to create a strong accessible network of Healthcare providers for better reach 
@@ -119,7 +119,7 @@ export default function HomePage() {
             Our Features/Offerings
           </h1>
           <div>
-            <ul>
+            <ul className='homepage__section6__list_ul'>
               <li> Smart Portfolio management</li>
               <li> Digital Branding</li>
               <li> Easy to connect</li>
@@ -148,8 +148,8 @@ export default function HomePage() {
  
 
       <FeaturesAndOfferings />
-      <ReimagineSection />
       <ContactUsSection />
+      <ReimagineSection />
     </>
   );
 }
