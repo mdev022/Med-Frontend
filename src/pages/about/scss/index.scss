@@ -1,0 +1,211 @@
+
+.aboutpage{
+    &__pageheader{
+        padding: 4rem 0rem;
+        text-align: center;
+        font-family: 'Rajdhani';
+        h1{
+            font-size: 54px;
+            color: $green;
+        }
+        font-weight: 700;
+        @media (max-width:$medium-screen) {
+            padding: 1rem 0rem;
+            h1{
+                font-size: 36px;
+            }
+        }
+    }
+}
+
+.missionSection{
+   
+    &__wrapper{
+        padding: 4rem;
+        @media (max-width:$medium-screen) {
+            padding: 1rem;
+        }
+        font-family: 'Rajdhani';
+        p{
+            font-size: 22px !important;
+            font-weight: 500;
+            @media (max-width:$medium-screen) {
+                font-size: 16px !important;
+            }
+        }
+    }
+    &__content{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        h1{
+            color: $green;
+            font-family: 700;
+           
+        }
+        p{
+            margin-top: 1.5rem;
+        }
+    }
+}
+
+.whatweoffer{
+   
+    &__wrapper{
+        padding: 4rem;
+        background-color: $light-grey-navbar;
+        @media (max-width:$medium-screen) {
+            padding: 1rem;
+        }
+        font-family: 'Rajdhani';
+        p{
+            font-size: 22px !important;
+            font-weight: 500;
+            @media (max-width:$medium-screen) {
+                font-size: 16px !important;
+            }
+        }
+    }
+    &__content{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        h1{
+            color: $green;
+            font-family: 700;
+           
+        }
+        p{
+            margin-top: 1.5rem;
+        }
+    }
+
+    &__imageWrapper{
+            display: flex;
+            padding: 1rem;
+            flex-direction: row;
+            justify-content: space-evenly;
+            // width: 100%;
+            .template_image_1, .template_image_2{
+                box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+                margin: 0.5rem;
+                height: fit-content;
+                img{
+                    max-height: 360px;
+                   
+                }
+            }
+            .template_image_2{
+                margin-top: 5rem;
+                margin-left: 2rem;
+            }
+    }
+}
+
+.howWeWork{
+   
+    &__wrapper{
+        background-color: $light-grey-navbar;
+        padding: 4rem;
+        @media (max-width:$medium-screen) {
+            padding: 1rem;
+        }
+        font-family: 'Rajdhani';
+        p{
+            font-size: 22px !important;
+            font-weight: 500;
+            @media (max-width:$medium-screen) {
+                font-size: 16px !important;
+            }
+        }
+    }
+    &__content{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        h1{
+            color: $green;
+            font-family: 700;
+           
+        }
+        p{
+            margin-top: 1.5rem;
+        }
+    }
+}
+
+hr{
+    margin: 0px !important;
+}
+.whoWeAre{
+   
+    &__wrapper{
+        padding: 4rem;
+        @media (max-width:$medium-screen) {
+            padding: 1rem;
+        }
+        font-family: 'Rajdhani';
+        p{
+            font-size: 22px !important;
+            font-weight: 500;
+            @media (max-width:$medium-screen) {
+                font-size: 16px !important;
+            }
+        }
+    }
+    &__content{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        h1{
+            color: $green;
+            font-family: 700;
+           
+        }
+        p{
+            margin-top: 1.5rem;
+        }
+    }
+    &__cofounders{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        width: 100%;
+        &__imageCard{
+            padding: 2rem;
+            margin: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            img{
+                border-radius: 100%;
+                height: 360px;
+                margin-bottom: 1rem;
+                box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+            }
+            h3{
+                margin-top: 1rem;
+                color: $green;
+                font-weight: 600;
+            }
+            p{
+                margin-top: 0.25rem;
+            }
+        }
+        @media (max-width:$small-screen) {
+            flex-direction: column;
+            &__imageCard{
+                padding: 1rem;
+                margin: 0rem;
+                img{
+                    height: 240px;
+                }
+            }
+        }
+    }
+}

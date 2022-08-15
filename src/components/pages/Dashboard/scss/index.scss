@@ -27,26 +27,12 @@
             color: $white;
         }
         margin-bottom: 2rem;
-        &__contactdetails{
-            display: flex;
-            @media (max-width: $small-screen) {
-                flex-direction: column;
-            }
-            padding: 0.5rem 0rem;
-            span{
-                color: $white;
-                font-size: 20px;
-                font-weight: 600;
-                margin-right: 16px;
-                svg{
-                    width: 20px;
-                    height: 20px;
-                    path{
-                        stroke: $white;
-                        margin-right: 8px;
-                    }
-                }
-            }
+        &__greetingText{
+            // margin: 1rem 0rem;
+            font-size: 20px;
+            color: $white;
+            font-style: italic;
+            font-weight: 500;
         }
     }
     &__row2{
@@ -105,6 +91,24 @@
             .expiration-date{
                 span{
                     color: rgba(245, 166, 21, 0.808);
+                }
+            }
+        }
+        .col2{
+            // display: flex;
+            // flex-direction: column;
+            span{
+                font-size: 16px;
+                color: $grey;
+                font-weight: 600;
+                margin-bottom: 16px;
+                svg{
+                    width: 20px;
+                    height: 20px;
+                    path{
+                        stroke: $green;
+                        margin-right: 8px;
+                    }
                 }
             }
         }
