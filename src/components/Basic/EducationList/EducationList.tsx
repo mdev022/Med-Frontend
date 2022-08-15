@@ -17,13 +17,16 @@ interface IEducationListProps{
 export default function EducationList({list,itemClass}: IEducationListProps) {
   return (
     <div className={styles.wrapper}>
-      {
+      {list && Array.isArray(list) && 
         list.map((listItem,index)=> (
           <div key={`${listItem.description}- ${index}`} className={`${styles.item} ${itemClass}`}>
             <div>
-              <span className={`${styles.instituteName} ${itemClass}__name`}>
-                {listItem?.instituteName}
-              </span>
+              <div className={`${itemClass}__namedate`}>
+                <span className={`${styles.instituteName} ${itemClass}__name`}>
+                  {listItem?.instituteName}
+                </span>
+                <span className={`${styles.description} ${itemClass}__date`}>{listItem?.startYear} - {listItem?.endYear}</span>
+              </div>
               <span className={`${styles.fieldOfStudy} ${itemClass}__study`}>
                 {listItem?.fieldOfStudy}
               </span>
@@ -31,7 +34,6 @@ export default function EducationList({list,itemClass}: IEducationListProps) {
                 {listItem?.description}
               </span>
             </div>
-            <span className={`${styles.description} ${itemClass}__date`}>{listItem?.startYear} - {listItem?.endYear}</span>
           </div>
         ))
       }

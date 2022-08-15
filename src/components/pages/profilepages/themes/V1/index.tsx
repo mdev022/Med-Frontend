@@ -19,8 +19,19 @@ const ProfilePageV1 = ({
 }:IProfilePageV1) => {
 
   console.log('pageData',pageData);
-
+  //Data
   const infoSectionData = pageData?.info_section;
+  const videoSectionData = pageData?.video_section;
+  const aboutSectionData = pageData?.about;
+  const expirienceSectionData = pageData?.experience_section;
+  const educationSectionData = pageData?.education_section;
+  const interestSectionData = pageData?.Fields_of_Interest;
+
+
+  
+
+
+
 
   const ProfileSection = () => (
     <div className="aboutWrapper">
@@ -33,8 +44,8 @@ const ProfilePageV1 = ({
         </div>
         <div className="profileInfoWrapper">
           <div className='contact-fields p-2'>
-            <span><MailIconRed /> kunalsarkar12@gmail.com</span>
-            <span><PhoneIconRed /> +91 9416846189</span>
+            <span><MailIconRed /> {infoSectionData?.display_email}</span>
+            <span><PhoneIconRed /> {infoSectionData?.display_number}</span>
           </div>
           <div className="profile_info_text p-4">
             <h1>{infoSectionData?.displayName}</h1>
@@ -42,9 +53,9 @@ const ProfilePageV1 = ({
             <p>{infoSectionData?.bio_text}
             </p>
             <div className='social_icons_wrapper'>
-              <FacebookIconDark />
-              <YoutubeIconDark />
-              <TwitterIconDark />
+              <a href={infoSectionData?.socials?.facebook_link}><FacebookIconDark /></a>
+              <a href={infoSectionData?.socials?.youtube_link}> <YoutubeIconDark /></a>
+              <a href={infoSectionData?.socials?.twitter_link}><TwitterIconDark /></a>
             </div>
           </div>
         </div>
@@ -54,12 +65,11 @@ const ProfilePageV1 = ({
 
   const IntroSectionWithVideo = () => (
     <div className='introSection container p-4'>
-      <h1 className='mb-4'>Let Me Introduce Myself</h1>
-      <p className='mb-4'>A Quick video about myself, my achievemets, education, experiences and 
-        field I’m interested in
+      <h1 className='mb-4'>{videoSectionData?.heading}</h1>
+      <p className='mb-4'>{videoSectionData?.description}
       </p>
       <div className='intro-video-wrapper'>
-        <iframe src="https://www.youtube.com/embed/Dy7fc6wbINU" />
+        <iframe src={videoSectionData?.video_link} />
       </div>
     </div>
   );
@@ -76,17 +86,11 @@ const ProfilePageV1 = ({
         <img src={pageData?.image?.url} />
       </div>
       <div className="aboutSection__info p-2">
-        <h1>About Me</h1>
+        <h1>{aboutSectionData?.heading}</h1>
         <div className='aboutSection__info__description'>
           <div></div>
           <p>
-          Senior Vice Chairman, Director and Head of Cardiac Surgery at Medica Superspecialty Hospital, 
-            Dr. Sarkar practices coronary surgery as his pursuance of passion. He is intimately associated with the academic
-            activities of European Association for Cardio-Thoracic Surgery(EACTS)  and Indian Association of Cardiovascular and 
-            Thoracic Surgeons (IACTS), also Past President-IACTS; he also aspires to bring the South Asian nations together in the 
-            South Asian Forum of Cardiothoracic Surgeons. A passionate debater, orator and writer, Dr. Sarkar is the President of the 
-            Calcutta Debating Circle (CDC)
-            , and chairs the largest live debate in India during Calcutta’s Festival of the Spoken Word’.
+            {aboutSectionData?.text}
           </p>
         </div>
         <button>Contact me</button>
@@ -99,7 +103,20 @@ const ProfilePageV1 = ({
       <div className='container'>
         <h1 className='headerWithShadow experienceSection__header'>Experience<span>Experience</span></h1>
         <div className='experienceSection__cardsWrapper'>
-          <ExperienceCard 
+          {
+            expirienceSectionData?.map((experienceCard,index)=> {
+              return (
+                <ExperienceCard 
+                  key={index}
+                  wrapperStyleClass="card_wrapper" 
+                  heading={experienceCard?.title} 
+                  listItems={experienceCard.pointers} 
+                />
+              );
+            })
+          }
+         
+          {/* <ExperienceCard 
             wrapperStyleClass="card_wrapper" 
             heading='Experience' 
             listItems={['Cardiac electrophysiology','Cardiogeriatrics','Imaging']} 
@@ -108,12 +125,7 @@ const ProfilePageV1 = ({
             wrapperStyleClass="card_wrapper" 
             heading='Experience' 
             listItems={['Cardiac electrophysiology','Cardiogeriatrics','Imaging']} 
-          />
-          <ExperienceCard 
-            wrapperStyleClass="card_wrapper" 
-            heading='Experience' 
-            listItems={['Cardiac electrophysiology','Cardiogeriatrics','Imaging']} 
-          />
+          /> */}
         </div>
       </div>
     </div>
@@ -125,22 +137,7 @@ const ProfilePageV1 = ({
 
       <EducationList 
         itemClass="educationSection__item"
-        list={[{instituteName: "Random Medical College", 
-          fieldOfStudy: "Random Field of Study", 
-          description: "Dummy text lol", 
-          startYear: "2009", 
-          endYear: "2012"
-        },{instituteName: "Random Medical College", 
-          fieldOfStudy: "Random Field of Study", 
-          description: "Dummy text lol", 
-          startYear: "2009", 
-          endYear: "2012"
-        },{instituteName: "Random Medical College", 
-          fieldOfStudy: "Random Field of Study", 
-          description: "Dummy text lol", 
-          startYear: "2009", 
-          endYear: "2012"
-        }]} 
+        list={educationSectionData} 
       />
     </div>
   );
@@ -148,25 +145,37 @@ const ProfilePageV1 = ({
 
   return (
     <div>
-      <ProfileSection />
+      {
+        infoSectionData && <ProfileSection />
+      }
 
-      <IntroSectionWithVideo />
+      {
+        videoSectionData &&  <IntroSectionWithVideo />
+      }
 
-      <Divider />
+      {
+        aboutSectionData && <AboutSection />
+      }
 
-      <AboutSection />
+      {
+        expirienceSectionData &&      <ExperienceSection />
+      }
 
-      <ExperienceSection />
+      {
+        educationSectionData && <EducationSection />
+      }
 
-      <EducationSection />
+      {
+        interestSectionData &&  <InterestSection 
+          header={ <h1 className='headerWithShadow interestSection__header'>Interests<span>Interests</span></h1>} 
+          list={interestSectionData?.map(interestObj=> interestObj.interest_field)}
+          wrapperClass="interestSection"
+        />
+      }
 
-      <InterestSection 
-        header={ <h1 className='headerWithShadow interestSection__header'>Interests<span>Interests</span></h1>} 
-        list={["Interest 1", "Intertest 2", "Interest 3","Interest 4"]}
-        wrapperClass="interestSection"
-      />
-
-      <ConnectSection headerWithShadow />
+      {
+        infoSectionData && <ConnectSection data={infoSectionData} headerWithShadow />
+      }
     </div>
   );
 };
