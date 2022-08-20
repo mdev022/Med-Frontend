@@ -10,6 +10,7 @@ import useAuth from "../../hooks/useAuth";
 import { LoginFormSchema } from "../../utils/validations";
 import styles from  "./index.module.scss";
 import Link from "next/link";
+import MainLogo from "../../components/SvgComponents/MainLogo";
 
 export async function getStaticProps() {
   return {
@@ -85,73 +86,82 @@ const Login: NextPage = () => {
   return (
     <>
       <Layout contentStyleClass={styles.contentLayout}>
-        <div className={`${styles.wrapper} container d-flex flex-column justify-content-center align-items-center `}>
-          <div className={styles.loginHeader}>
-            <h3>Login</h3>
+        <div className={styles.contentWrapper}>
+          <div className={styles.imageWrappper}>
+            <div>
+              <MainLogo />  
+              <h3>Medinery</h3>
+            </div>
+            <p>Login to get the full experience.</p>
           </div>
-          <Formik 
-            onSubmit={(values)=> 
-            {
-              if(values.email && values.password){
-                handleLogin(values);
+          <div className={`${styles.loginWrapper} container d-flex flex-column justify-content-center align-items-center `}>
+            <div className={styles.loginHeader}>
+              <h3>Login</h3>
+            </div>
+            <Formik 
+              onSubmit={(values)=> 
+              {
+                if(values.email && values.password){
+                  handleLogin(values);
+                }
               }
-            }
-            } 
-            validationSchema={LoginFormSchema} 
-            initialValues={{ email: '', password: '' }}
-          >
-            {({
-              values,
-              errors,
-              touched,
-              handleChange,
-              handleBlur,
-              handleSubmit,
-              isSubmitting,
-            })=> (
-              <form className={styles.formClass} onSubmit={(e)=> {
-                e.preventDefault();
-                handleSubmit();
-              }}>
-                <Input
-                  type="email"
-                  value={values.email}
-                  // placeholder="Enter your email"
-                  className={styles.loginInput}
-                  label="Email"
-                  name="email"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  errorLabelProps={{message: errors.email, customStyle: styles.inputErrorMsg}}
-                />
-                <Input
-                  type="password"
-                  value={values.password}
-                  // placeholder="Enter your password"
-                  label="Password"
-                  className={styles.loginInput}
-                  name="password"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  errorLabelProps={{message: errors.password, customStyle: styles.inputErrorMsg}}
-                />
+              } 
+              validationSchema={LoginFormSchema} 
+              initialValues={{ email: '', password: '' }}
+            >
+              {({
+                values,
+                errors,
+                touched,
+                handleChange,
+                handleBlur,
+                handleSubmit,
+                isSubmitting,
+              })=> (
+                <form className={styles.formClass} onSubmit={(e)=> {
+                  e.preventDefault();
+                  handleSubmit();
+                }}>
+                  <Input
+                    type="email"
+                    value={values.email}
+                    // placeholder="Enter your email"
+                    className={styles.loginInput}
+                    label="Email"
+                    name="email"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    errorLabelProps={{message: errors.email, customStyle: styles.inputErrorMsg}}
+                  />
+                  <Input
+                    type="password"
+                    value={values.password}
+                    // placeholder="Enter your password"
+                    label="Password"
+                    className={styles.loginInput}
+                    name="password"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    errorLabelProps={{message: errors.password, customStyle: styles.inputErrorMsg}}
+                  />
 
-                {
-                  errorMsg && <div className={styles.errorMsgWrapper}>
-                    <span>{errorMsg}</span>
+                  {
+                    errorMsg && <div className={styles.errorMsgWrapper}>
+                      <span>{errorMsg}</span>
+                    </div>
+                  }
+                  {
+                    requestLoading ?  <div className="spinner-border text-success" role="status">
+                    </div> :  <button type="submit" className={`${styles.loginButton} btn`}>Login</button>
+                  }
+                  <div className={styles.signuphereText}>
+                    <Link href="/signup">Dont have an account ?. Sign up here.</Link>
                   </div>
-                }
-                {
-                  requestLoading ?  <div className="spinner-border text-success" role="status">
-                  </div> :  <button type="submit" className={`${styles.loginButton} btn`}>Login</button>
-                }
-                <div className={styles.signuphereText}>
-                  <Link href="/signup">Dont have an account ?. Sign up here.</Link>
-                </div>
-              </form>
-            )}
-          </Formik>
+                </form>
+              )}
+            </Formik>
           
+          </div>
         </div>
       </Layout>
     </>

@@ -10,6 +10,7 @@ import useAuth from "../../hooks/useAuth";
 import { LoginFormSchema, SignupFormSchema } from "../../utils/validations";
 import styles from  "./index.module.scss";
 import Link from "next/link";
+import MainLogo from "../../components/SvgComponents/MainLogo";
 
 export async function getStaticProps() {
   return {
@@ -38,10 +39,10 @@ const SignUp: NextPage = () => {
   //   AxiosApi({...apiOptions(GET_PROFILE_WITH_SLUG),params: {slug: "anish-maitra"}});
   // },[auth?.user]);
 
-  const handleSignUp = async (values: {email:string; password: string, fullname: string, phone: string}) => {
+  const handleSignUp = async (values: {email:string; password: string, firstname: string, lastname:string, phone: string}) => {
     setRequestLoading(true);
     try {
-      const res = await AxiosApi({...apiOptions(USER_SIGNUP), data: {...values,name: values.fullname, phone_no: values.phone}});
+      const res = await AxiosApi({...apiOptions(USER_SIGNUP), data: values});
       localStorage.setItem("access", res?.data?.authToken);
       router.push('/');
     } catch (errorObj) {
@@ -87,98 +88,118 @@ const SignUp: NextPage = () => {
   return (
     <>
       <Layout contentStyleClass={styles.contentLayout}>
-        <div className={`${styles.wrapper} container d-flex flex-column justify-content-center align-items-center `}>
-          <div className={styles.loginHeader}>
-            <h3>Sign up</h3>
+        <div className={styles.contentWrapper}>
+          <div className={styles.imageWrappper}>
+            <div>
+              <MainLogo />  
+              <h3>Medinery</h3>
+            </div>
+            <p>Login to get the full experience.</p>
           </div>
-          <Formik 
-            onSubmit={(values)=> 
-            {
-              if(values.email && values.password && values.fullname && values.phone && values.phone.length === 10){
-                handleSignUp(values);
+          <div className={`${styles.loginWrapper} container d-flex flex-column justify-content-center align-items-center `}>
+            <div className={styles.loginHeader}>
+              <h3>Sign up</h3>
+            </div>
+            <Formik 
+              onSubmit={(values)=> 
+              {
+                if(values.email && values.password && values.lastname && values.firstname && values.phone && values.phone.length === 10){
+                  handleSignUp(values);
+                }
               }
-            }
-            }
-            validationSchema={SignupFormSchema} 
-            initialValues={{ email: '', password: '', fullname: '', phone: '' }}
-          >
-            {({
-              values,
-              errors,
-              touched,
-              handleChange,
-              handleBlur,
-              handleSubmit,
-              isSubmitting,
-            })=> (
-              <form className={styles.formClass} onSubmit={(e)=> {
-                e.preventDefault();
-                handleSubmit();
-              }}>
-                {console.log("styles",styles.loginInput)}
-                <Input
-                  type="text"
-                  value={values.fullname}
-                  // placeholder="Enter your email"
-                  className={styles.loginInput}
-                  label="Full Name"
-                  name="fullname"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  errorLabelProps={{message: errors.fullname, customStyle: styles.inputErrorMsg}}
-                />
-                <Input
-                  type="email"
-                  value={values.email}
-                  // placeholder="Enter your email"
-                  className={styles.loginInput}
-                  label="Email"
-                  name="email"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  errorLabelProps={{message: errors.email, customStyle: styles.inputErrorMsg}}
-                />
-                <Input
-                  type="text"
-                  value={values.phone}
-                  // placeholder="Enter your email"
-                  className={styles.loginInput}
-                  label="Phone no"
-                  name="phone"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  errorLabelProps={{message: errors.phone, customStyle: styles.inputErrorMsg}}
-                />
-                <Input
-                  type="password"
-                  value={values.password}
-                  // placeholder="Enter your password"
-                  label="Password"
-                  className={styles.loginInput}
-                  name="password"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  errorLabelProps={{message: errors.password, customStyle: styles.inputErrorMsg}}
-                />
-                {
-                  errorMsg && <div className={styles.errorMsgWrapper}>
-                    <span>{errorMsg}</span>
-                  </div>
-                }
+              }
+              validationSchema={SignupFormSchema} 
+              initialValues={{ email: '', password: '', firstname: '', phone: '', lastname: '' }}
+            >
+              {({
+                values,
+                errors,
+                touched,
+                handleChange,
+                handleBlur,
+                handleSubmit,
+                isSubmitting,
+              })=> (
+                <form className={styles.formClass} onSubmit={(e)=> {
+                  e.preventDefault();
+                  handleSubmit();
+                }}>
+                  {console.log("styles",styles.loginInput)}
+                  <Input
+                    type="text"
+                    value={values.firstname}
+                    // placeholder="Enter your email"
+                    className={styles.loginInput}
+                    label="First Name"
+                    name="firstname"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    errorLabelProps={{message: errors.firstname, customStyle: styles.inputErrorMsg}}
+                  />
+                  <Input
+                    type="text"
+                    value={values.fullname}
+                    // placeholder="Enter your email"
+                    className={styles.loginInput}
+                    label="Last Name"
+                    name="lastname"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    errorLabelProps={{message: errors.lastname, customStyle: styles.inputErrorMsg}}
+                  />
+                  <Input
+                    type="email"
+                    value={values.email}
+                    // placeholder="Enter your email"
+                    className={styles.loginInput}
+                    label="Email"
+                    name="email"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    errorLabelProps={{message: errors.email, customStyle: styles.inputErrorMsg}}
+                  />
+                  <Input
+                    type="text"
+                    value={values.phone}
+                    // placeholder="Enter your email"
+                    className={styles.loginInput}
+                    label="Phone no"
+                    name="phone"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    errorLabelProps={{message: errors.phone, customStyle: styles.inputErrorMsg}}
+                  />
+                  <Input
+                    type="password"
+                    value={values.password}
+                    // placeholder="Enter your password"
+                    label="Password"
+                    className={styles.loginInput}
+                    name="password"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    errorLabelProps={{message: errors.password, customStyle: styles.inputErrorMsg}}
+                  />
+                  {
+                    errorMsg && <div className={styles.errorMsgWrapper}>
+                      <span>{errorMsg}</span>
+                    </div>
+                  }
                 
-                {
-                  requestLoading ? <div className="spinner-border text-success" role="status">
-                  </div> :   <button type="submit" className={`${styles.loginButton} btn`}>Sign up</button>
-                }
+                  {
+                    requestLoading ? <div className="spinner-border text-success" role="status">
+                    </div> :   <button type="submit" className={`${styles.loginButton} btn`}>Sign up</button>
+                  }
 
-                <div className={styles.backtoLoginText}>
-                  <Link href="/login">Already have an account ?. Login here.</Link>
-                </div>
+                  <div className={styles.backtoLoginText}>
+                    <Link href="/login">Already have an account ?. Login here.</Link>
+                  </div>
               
-              </form>
-            )}
-          </Formik>
+                </form>
+              )}
+            </Formik>
           
+          </div>
         </div>
       </Layout>
     </>

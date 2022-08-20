@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import useAuth from "../../../hooks/useAuth";
+import { logOut } from "../../../utils/functions";
 import MainLogo from "../../SvgComponents/MainLogo";
 import styles from "./index.module.scss";
 export const Navbar = () => {
@@ -71,19 +72,46 @@ export const Navbar = () => {
               <a className="nav-link disabled">Disabled</a>
             </li>
             {
-              auth?.user && auth?.user?.subscribed && <li className={`nav-item ${styles.dashboardLink}`} >
+              auth?.user && <li className={`nav-item ${styles.dashboardLink}`} >
                 <Link href="/user/dashboard">Dashboard</Link>
               </li>
             }
           </ul>
           <form className="d-flex" role="search">
             {
-              auth?.user?.name ? <span className={styles.username}>
-                Hi {auth.user.name}
-              </span> : <Link href="/login">
+              auth?.user?.first_name ? <li className={`${styles.loginDropdown} nav-item dropdown`}>
+                <a
+                  className="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <span className={styles.username}>
+                  Hi {auth.user.first_name}
+                  </span> 
+                </a>
+                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li onClick={logOut}>
+                    <a className="dropdown-item" href="#">
+                    Log Out
+                    </a>
+                  </li>
+                  {/* <li>
+                    <hr className="dropdown-divider" />
+                  </li> */}
+                  {/* <li>
+                    <a className="dropdown-item" href="#">
+                    Something else here
+                    </a>
+                  </li> */}
+                </ul>
+              </li> : <Link href="/login">
                 <button className="btn btn-outline-secondary mx-2">Login</button>
               </Link>
             }
+
             <input
               className={`${styles.navbarSearch} form-control me-2 shadow-sm`}
               type="search"
