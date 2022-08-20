@@ -7,6 +7,7 @@ import ProfilePageTemplate1 from "../../../assets/images/template1.png";
 import ProfilePageTemplate2 from "../../../assets/images/template2.png";
 import MailIconRed from '../../SvgComponents/MailIconRed';
 import PhoneIconRed from '../../SvgComponents/PhoneIconRed';
+import Head from 'next/head';
 
 export default function HomePage() {
 
@@ -139,8 +140,19 @@ export default function HomePage() {
       </div>
     </div>
   );
+
+  const HeadTagData = () => (
+    <Head>
+      <title>Medinery | A platform for doctors to showcase themselves</title>
+      <meta name="og:title" content="Medinery | A platform for doctors to showcase themselves"/>
+      <meta name="og:url" content="https://www.medinery.com"/>
+      <meta name="description" content="Medinery - A platform for doctors to showcase themselves and create a digital presence through our portfolio service."/>
+      <meta name="og:description" content="Medinery - A platform for doctors to showcase themselves and create a digital presence through our portfolio service."/>
+    </Head>
+  );
   return (
     <>
+      <HeadTagData />
       <PreviewSection />
 
       <OurProductSection />
