@@ -30,3 +30,13 @@
     display: flex;
     align-items: center;
 }
+.mobileNavbarTitle{
+    margin-bottom: 0px !important;
+    color: $green;
+    font-weight: 700;
+    font-family: 'Rajdhani';
+    font-size: 24px !important;
+    @media (min-width:$large-screen) {
+        display: none;
+    }
+}

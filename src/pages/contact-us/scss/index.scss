@@ -1,0 +1,123 @@
+
+.contactPage{
+    &__pageheader{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem 0rem;
+             background-image: url('https://medinery-bucket.s3.ap-south-1.amazonaws.com/pawel-czerwinski+-+0xCCPIbl3M-unsplash.jpg');
+            min-height: 360px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+            z-index: -2;
+            &:after{
+                content: "";
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                background-color: rgba(57, 126, 107, 0.75);
+                background-color: rgba(0, 0, 0, 0.65);
+                top: 0;
+                z-index: -1;
+            }
+        // text-align: center;
+        font-family: 'Rajdhani';
+        h1{
+            font-size: 54px;
+            color: $green;
+            font-weight: bold;
+        }
+        font-weight: 700;
+        @media (max-width:$medium-screen) {
+            min-height: 240px;
+            padding: 1rem 0rem;
+            h1{
+                font-size: 36px;
+            }
+        }
+    }
+}
+
+.contactPage__content{
+   
+    &__wrapper{
+        padding: 4rem;
+        display: flex;
+        flex-direction: row;
+        @media (max-width:$medium-screen) {
+            padding: 1rem;
+            flex-direction: column;
+        }
+        font-family: 'Rajdhani';
+        p{
+            font-size: 22px !important;
+            font-weight: 500;
+            @media (max-width:$medium-screen) {
+                font-size: 16px !important;
+            }
+        }
+    }
+    &__card1{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding: 3rem 2rem;
+        background-color: $light-grey-navbar;
+        width: 80%;
+        margin: 4rem auto;
+        box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+        @media (max-width:$medium-screen) {
+            width: 100%;
+            margin: 2rem auto;
+            padding: 2rem 1rem;
+        }
+        h1{
+            color: $green;
+            font-family: 700;
+
+           
+        }
+        p{
+            margin-top: 1rem;
+        }
+        >div{
+            
+            margin-top: 1.5rem;
+           h5{
+            @media (max-width:$medium-screen) {
+                font-size: 16px;
+            }
+            >svg{
+                width: 20px;
+                height: 20px;
+                margin-right: 8px;
+                path{
+                    stroke: $dark-green;
+                }
+            }
+            margin: 2rem 0rem;
+            span{
+                color: $dark-green;
+            }
+           }
+        }
+    }
+    &__card2{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding: 2rem;
+        h1{
+            color: $green;
+            font-family: 700;
+           
+        }
+        p{
+            margin-top: 1.5rem;
+        }
+    }
+}
