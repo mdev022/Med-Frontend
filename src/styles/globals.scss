@@ -3,6 +3,7 @@
 
 //Page scss imports
 @import "../pages/about/scss/index.scss";
+@import "../pages/contact-us/scss/index.scss";
 
 html,
 body {
@@ -43,10 +44,15 @@ a {
   }
 }
 .next-link-item{
+  padding: 0.5rem;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   color: $green;
+  @media (max-width:$small-screen) {
+    padding: 0.5rem 0rem;
+  }
+
  a{
   &:hover{
     color: $dark-green;
