@@ -13,8 +13,8 @@ export default function InterestSection({list,wrapperClass,header}:InterestSecti
       <div className={`container  ${styles.wrapper}`}>
         <div>{header}</div>
         <div className={`${styles.listWrapper}`}>
-          {list && Array.isArray(list) && list.map(item=> (
-            <span className={`${wrapperClass}__item ${styles.item}`}>{item}</span>
+          {list && Array.isArray(list) && list.map((item,index)=> (
+            <span key={index.toString()} className={`${wrapperClass}__item ${styles.item}`}>{item}</span>
           ))}
         </div>
       </div>

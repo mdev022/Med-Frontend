@@ -107,7 +107,7 @@ const ProfilePageV1 = ({
             expirienceSectionData?.map((experienceCard,index)=> {
               return (
                 <ExperienceCard 
-                  key={index}
+                  key={index.toString()}
                   wrapperStyleClass="card_wrapper" 
                   heading={experienceCard?.title} 
                   listItems={experienceCard.pointers} 

@@ -1,5 +1,8 @@
 @import "../../../styles/variables.scss";
-.navbarSearch:focus {
+.navbarSearch{
+    @media (min-width: $large-screen) {
+        min-width: 400px;
+    }
 }
 .mainLogo{
     padding-right: 1rem;
@@ -38,5 +41,65 @@
     font-size: 24px !important;
     @media (min-width:$large-screen) {
         display: none;
+    }
+}
+.loaderWrapper{
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.searchDropdown{
+    padding: 0px !important;
+    width: 100%;
+    li{
+        padding: 1rem;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        // border-top: 1px solid $white;
+        border-bottom: 1px solid $green;
+        div{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+           
+            margin-left: 0.5rem;
+            @media (min-width:$large-screen) {
+                    
+                margin-left: 2.5rem;
+            }
+            h4{
+          
+                @media (min-width:$large-screen) {
+                    
+                    font-size: 20px;
+                }
+                font-weight: 700;
+                font-size: 18px;
+                color: $green;
+                margin-bottom: 0px !important;
+            }
+            h6{
+                margin-top: 0.25rem;
+                color: rgba(black,0.50);
+            }
+        }
+       
+    }
+}
+.searchIcon{
+    padding: 0px !important;
+    border: none !important;
+    margin-left: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    svg{
+        fill: $dark-green;
+    }
+    &:after{
+       display: none;
+       
     }
 }

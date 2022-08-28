@@ -1,10 +1,31 @@
+import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import useAuth from "../../../hooks/useAuth";
 import { logOut } from "../../../utils/functions";
 import MainLogo from "../../SvgComponents/MainLogo";
+import SearchIcon from "../../SvgComponents/SearchIcon";
 import styles from "./index.module.scss";
 export const Navbar = () => {
+  const[searchText, setSearchText] = useState("");
+  const[searchResults, setSearchResults] = useState([]);
+  const[loading, setLoading] = useState<boolean>(false);
+
+  const handleSearch = async () => {
+    if(searchText){
+      setLoading(true);
+      setSearchResults([]);
+      try {
+        const profiles = await fetch(`/api/getProfiles?search=${searchText}`).then(res=> res.json());
+        setSearchResults(profiles);
+      } catch (error) {
+        console.log('error',error);
+      } finally{
+        setLoading(false);
+      }
+    }
+  };
+
   const auth = useAuth();
   console.log('auth',auth);
   return (
@@ -82,16 +103,51 @@ export const Navbar = () => {
                 <button className="btn btn-outline-secondary mx-2">Login</button>
               </Link>
             }
-
-            <input
-              className={`${styles.navbarSearch} form-control me-2 shadow-sm`}
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button className="btn btn-outline-success" type="submit">
+            <div className="dropdown">
+              <input
+                className={`${styles.navbarSearch} form-control me-2 shadow-sm`}
+                type="search"
+                placeholder="Search For Doctors"
+                onChange={(e)=> setSearchText(e.target.value)}
+                aria-label="Search"
+              />
+              <ul className={`dropdown-menu ${styles.searchDropdown}`} aria-labelledby="navbarDropdown2">
+                {
+                  searchResults && searchResults.length && !loading ? <>
+                    {
+                      searchResults.map((profile,index)=> {
+                        console.log('profile',profile);
+                        return (
+                          <li key={index.toString()}>
+                            <Image src={profile?.image?.url} width={48} height={48} />
+                            <div>
+                              <Link className={`dropdown-item`} href={`/profile/${profile?.slug}`}>
+                                <h4> {profile?.info_section?.displayName}</h4>
+                              </Link>
+                              <h6>{profile?.info_section?.specialization}</h6>
+                            </div>
+                          </li>
+                        );
+                      })
+                    }
+                  </> : loading ?  <div className={styles.loaderWrapper}>
+                    <div className="spinner-border text-success" role="status">
+                    </div>
+                  </div> : <></>
+                }
+              </ul>
+            </div>
+          
+            {/* <button className="btn btn-outline-success dropdown-toggle"
+              id="navbarDropdown2"
+              role="button"
+              onClick={()=> handleSearch()}
+              data-bs-toggle="dropdown"
+              aria-expanded="false">
               Search
-            </button>
+            </button> */}
+            <span className={` dropdown-toggle ${styles.searchIcon}`}
+              id="navbarDropdown2" data-bs-toggle="dropdown"   onClick={()=> handleSearch()}> <SearchIcon /></span>
           </form>
         </div>
       </div>
