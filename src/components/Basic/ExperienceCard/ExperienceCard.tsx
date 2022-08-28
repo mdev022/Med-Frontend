@@ -13,8 +13,8 @@ export default function ExperienceCard({heading,listItems, wrapperStyleClass, li
     <div className={`${wrapperStyleClass}  ${styles.wrapper}`}>
       {heading && <h5>{heading}</h5>}
       <div className={`${listWrapperClass} ${styles.listWrapper}`}>
-        {listItems.map(item=> (
-          <div className={styles.listItem}> <RightArrow /> <span>{item}</span> </div>
+        {listItems.map((item,index)=> (
+          <div key={index.toString()} className={styles.listItem}> <RightArrow /> <span>{item}</span> </div>
         ))}
       </div>
     </div>

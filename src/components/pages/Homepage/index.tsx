@@ -12,22 +12,24 @@ import Head from 'next/head';
 export default function HomePage() {
 
   const PreviewSection = () => (
-    <div className='container homepage__section1'>
-      <div className='homepage__section1__col1'>
-        <h1>
+    <div className='homepage__section1__wrapper'>
+      <div className='container homepage__section1'>
+        <div className='homepage__section1__col1'>
+          <h1>
             Preview
-        </h1>
-        <p>
-        Medinery is a digital health platform to create a strong accessible network of Healthcare providers for better reach 
-        and building a strong digital presence.We help Healthcare providers in building a brand around their contribution in healthcare 
-        domain and to create a portfolio.
-        </p>
-        <p>
+          </h1>
+          <p>
+          Medinery is a health platform to create a Portfolio of Doctors for better reach and building a strong digital presence.We help Doctors  in building a brand around their contribution in healthcare domain and to promote their work.
+We work tirelessly for a better integrated healthcare information system around the world in future and will connect the whole of healthcare under one head.
+
+          </p>
+          <p>
         We work tirelessly for a better integrated healthcare system around the world in future and will connect the whole of healthcare under one head.
-        </p>
-      </div>
-      <div className='homepage__section1__col2'>
-        <Image src={PreviewSectionImage} />
+          </p>
+        </div>
+        <div className='homepage__section1__col2'>
+          <Image src={PreviewSectionImage} />
+        </div>
       </div>
     </div>
   );
@@ -46,7 +48,7 @@ export default function HomePage() {
         <div className='homepage__section2__col2'>
           <h1>Our Product</h1>
           <p>
-        Medinery is a social networking platform to improve access to healthcare and create Healthcare awareness,
+        At medinery, we work as a social networking platform to improve access to healthcare and create Healthcare awareness,
         hence helping consumers to take better and efficient healthcare decisions.It aims to create a complete ecosystem of 
         Healthcare professionals with consumer driven approach for better understanding of patients and deliver effective healthcare.
           </p>
@@ -101,7 +103,7 @@ export default function HomePage() {
         Web 2.0 for Doctors
         </h1>
         <p>
-         Doctors has the sole power to create, project their digital presence through our platform.
+        Doctors can create online presence on their own and can manage profiles of their own.They can showcase their skills interests and their work to enhance their healthcare practice.
         </p>
         {/* <p>
         We work tirelessly for a better integrated healthcare system around the world in future and will connect the whole of healthcare under one head.
@@ -153,14 +155,17 @@ export default function HomePage() {
   return (
     <>
       <HeadTagData />
-      <PreviewSection />
 
+ 
+      <PreviewSection />
       <OurProductSection />
+
+
+      <FeaturesAndOfferings />
       <WebForDocSection />
  
 
-      <FeaturesAndOfferings />
-      <ContactUsSection />
+      {/* <ContactUsSection /> */}
       <ReimagineSection />
     </>
   );
