@@ -4,7 +4,7 @@
     min-height: fit-content;
     // position: absolute;
     // bottom: 0;
-    padding: 2rem;
+    padding: 4rem 2rem;
     background-color: $light-grey-navbar;
     > div{
         display: flex;
@@ -98,6 +98,9 @@
         color: $green;
         font-weight: 700;
         font-family: 'Rajdhani';
+        margin-bottom: 1rem;
+    }
+    p{
     }
     div{
         color: $black;
@@ -109,3 +112,40 @@
         }
     }
 }
+.mailInputWrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    button{
+        border:  1px solid rgba($light-grey, 0.35);
+        background-color: $green;
+        font-size: 18px;
+        color: white;
+        font-weight: 500;
+        border-radius: 4px;
+        &:hover{
+            background-color: transparent;
+            border:  1px solid  rgba($light-green, 0.35);
+            color: $green;
+        }
+        transition: all 0.3s;
+    }
+}
+.mailInput{
+    font-size: 18px;
+    padding: 0.25rem 0.5rem;
+    border: 1px solid rgba($light-grey, 0.35) !important;
+    font-weight: 500;
+    border-radius: 4px;
+    &:focus-visible{
+        border: 1px solid rgba($light-green, 0.35) !important;
+        outline: none;
+    }
+    margin-right: 0.5rem;
+}
+// .loaderWrapper{
+//     padding: 0.15rem;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+// }

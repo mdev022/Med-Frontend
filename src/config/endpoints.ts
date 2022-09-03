@@ -37,6 +37,9 @@ export const GET_USER = {url: "/api:0ZC7IWne/auth/me", method: REQUEST_METHODS.G
 export const GET_ALL_PROFILE_PATHS = {url: "/api:0ZC7IWne/getprofilepaths", method: REQUEST_METHODS.GET};
 export const GET_ALL_PROFILES = {url: "/api:0ZC7IWne/getAllProfilePages", method: REQUEST_METHODS.GET};
 export const GET_PROFILE_WITH_SLUG = {url: "/api:0ZC7IWne/getProfileWithSlug", method: REQUEST_METHODS.GET};
+
+//Subscribe 
+export const SUBSCRIBE_WITH_EMAIL = {url: "/api:0ZC7IWne/subscribers", method: REQUEST_METHODS.POST};
 // export const SIGNUP_API = { url: "user/signup", method: "post" };
 // export const LOGIN_API = { url: "user/login", method: "post" };
 // export const UPDATE_PROFILE_API = {
